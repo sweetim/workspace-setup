@@ -1,0 +1,10 @@
+---
+- name: setup timx-workspace
+  hosts: 127.0.0.1
+  tasks:
+    - import_tasks: autojump.yml
+    - import_tasks: history.yml
+    - import_tasks: bash_it.yml
+    - import_tasks: nvm.yml
+    - import_tasks: rust.yml
+    - import_tasks: build_essentials.yml

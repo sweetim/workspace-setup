@@ -1,0 +1,11 @@
+- name: Install autojump
+  become: yes
+  apt:
+    name: autojump
+    state: latest
+- name: Append autojump into bashrc
+  lineinfile:
+    path: ~/.bashrc
+    line: . /usr/share/autojump/autojump.sh
+    regexp: .*autojump.sh
+    state: present

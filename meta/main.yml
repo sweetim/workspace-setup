@@ -1,0 +1,16 @@
+galaxy_info:
+  author: Tim
+  description: To setup timx-style workspace
+  company: timx
+  license: MIT
+  min_ansible_version: 2.9
+  galaxy_tags:
+    - "developer"
+    - "tools"
+    - "developer_tools"
+    - "bash_it"
+    - "autojump"
+    - "history"
+    - "nodejs"
+    - "nvm"
+    - "rust"
