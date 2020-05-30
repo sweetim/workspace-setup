@@ -24,4 +24,9 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: ansible-lint
-      uses: ansible/ansible-lint-action@v4.1.0.post0
+      uses: ansible/ansible-lint-action@master
+      with:
+        targets: |
+          tasks
+          meta
+          defaults
