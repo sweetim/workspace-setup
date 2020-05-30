@@ -5,4 +5,5 @@
     name:
       - build-essential
       - cmake
+      - pkg-config
     state: latest
