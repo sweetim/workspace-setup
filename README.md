@@ -7,3 +7,5 @@ This will automatically setup to timx-style workspace
 - autojump
 - history using directional key
 - bash_it (modern theme)
+- nvm
+- rust
