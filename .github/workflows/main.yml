@@ -27,6 +27,8 @@ jobs:
       uses: ansible/ansible-lint-action@master
       with:
         targets: |
-          tasks
-          meta
-          defaults
+          tasks/main.yml
+    - name: publish to ansible galaxy
+      uses: robertdebock/galaxy-action@1.0.3
+      with:
+        galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}

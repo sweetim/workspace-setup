@@ -2,7 +2,7 @@
   stat:
     path: "{{ ansible_env.HOME }}/.bash_it"
   register: is_bash_it_available
-- name: Install bash-it 
+- name: Install bash-it
   block:
     - name: Clone bash-it repository
       git:
