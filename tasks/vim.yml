@@ -2,7 +2,10 @@
   blockinfile:
     state: present
     path: ~/.vimrc
+    marker: '"{mark} ANSIBLE MANAGED BLOCK'
     create: yes
     block: |
-      :set number
       set t_Co=256
+      :set number
+      :set listchars=tab:>·,trail:~,extends:>,precedes:<,space:.
+      :set list
