@@ -3,12 +3,16 @@ galaxy_info:
   description: To setup timx-style workspace
   company: timx
   license: MIT
-  min_ansible_version: 2.9
+  min_ansible_version: 2.6
+  platforms:
+    - name: Ubuntu
+      versions:
+      - all
   galaxy_tags:
     - "developer"
     - "tools"
-    - "developer_tools"
-    - "bash_it"
+    - "bash"
+    - "workspace"
     - "autojump"
     - "history"
     - "nodejs"

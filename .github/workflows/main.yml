@@ -25,10 +25,6 @@ jobs:
     # Runs a single command using the runners shell
     - name: ansible-lint
       uses: ansible/ansible-lint-action@master
-      with:
-        targets: |
-          tasks/main.yml
-        args: "-x 401,403"
     - name: publish to ansible galaxy
       uses: robertdebock/galaxy-action@1.0.3
       with:
