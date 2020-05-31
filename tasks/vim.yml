@@ -1,0 +1,8 @@
+- name: Config VIM
+  blockinfile:
+    state: present
+    path: ~/.vimrc
+    create: yes
+    block: |
+      :set number
+      set t_Co=256
