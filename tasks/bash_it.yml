@@ -20,4 +20,4 @@
   replace:
     path: "{{ ansible_env.HOME }}/.bashrc"
     regexp: "export BASH_IT_THEME='(.*)'"
-    replace: "export BASH_IT_THEME='modern'"
+    replace: "export BASH_IT_THEME='{{ bash_it_theme }}'"
