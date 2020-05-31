@@ -1,23 +1,23 @@
 - name: Check if bash-it is available
   stat:
-    path: "{{ ansible_env.HOME }}/.bash_it"
+    path: "{{ lookup('env', 'HOME') }}/.bash_it"
   register: is_bash_it_available
 - name: Install bash-it
   block:
     - name: Clone bash-it repository
       git:
         repo: "https://github.com/Bash-it/bash-it.git"
-        dest: "{{ ansible_env.HOME }}/.bash_it"
+        dest: "{{ lookup('env', 'HOME') }}/.bash_it"
         clone: yes
         force: yes
         depth: 1
     - name: Install bash-it
-      shell: "echo 'y' | {{ ansible_env.HOME }}/.bash_it/install.sh"
+      shell: "echo 'y' | {{ lookup('env', 'HOME') }}/.bash_it/install.sh"
       args:
         executable: /bin/bash
   when: not is_bash_it_available
 - name: Set bash-it theme
   replace:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: "{{ lookup('env', 'HOME') }}/.bashrc"
     regexp: "export BASH_IT_THEME='(.*)'"
     replace: "export BASH_IT_THEME='{{ bash_it_theme }}'"
