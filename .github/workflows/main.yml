@@ -19,13 +19,13 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-    - name: ansible-lint
-      uses: ansible/ansible-lint-action@master
-    - name: publish to ansible galaxy
-      uses: robertdebock/galaxy-action@1.0.3
-      with:
-        galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
+      # Runs a single command using the runners shell
+      - name: ansible-lint
+        uses: ansible/ansible-lint-action@master
+      - name: publish to ansible galaxy
+        uses: robertdebock/galaxy-action@1.0.3
+        with:
+          galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
