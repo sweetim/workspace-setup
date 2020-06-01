@@ -1,4 +1,6 @@
 ---
+- name: "Gather machine facts"
+  setup:
 - import_tasks: autojump.yml
 - import_tasks: history.yml
 - import_tasks: bash_it.yml
