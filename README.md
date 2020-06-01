@@ -12,3 +12,22 @@ This will automatically setup to timx-style workspace
 - nvm
 - rust
 - python
+
+### Usage
+
+```
+ansible-galaxy install sweetim.workspace_setup
+ansible localhost -m include_role -a name=sweetim.workspace_setup --diff --ask-become
+```
+
+or using ansible-playbook
+
+```
+---
+- name: sample
+  hosts: 127.0.0.1
+  roles:
+  - role: sweetim.workspace_setup
+    bash_it_theme: "modern"
+
+```
