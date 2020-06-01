@@ -1,3 +1,4 @@
+---
 - name: Config VIM
   blockinfile:
     state: present

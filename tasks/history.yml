@@ -1,3 +1,4 @@
+---
 - name: Install history hotkeys, if inputrc wasn't defined before
   blockinfile:
     state: present

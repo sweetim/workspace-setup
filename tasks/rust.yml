@@ -1,3 +1,4 @@
+---
 - name: Install rust
   shell: >
     set -o pipefail

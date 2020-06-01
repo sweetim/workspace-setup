@@ -1,3 +1,4 @@
+---
 - name: Check if bash-it is available
   stat:
     path: "{{ lookup('env', 'HOME') }}/.bash_it"

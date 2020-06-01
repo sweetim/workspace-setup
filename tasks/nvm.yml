@@ -1,3 +1,4 @@
+---
 - name: Install nvm for nodejs
   shell: >
     set -o pipefail

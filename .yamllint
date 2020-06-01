@@ -9,4 +9,3 @@ rules:
     min-spaces-inside: 1
     max-spaces-inside: 1
   truthy: disable
-  document-start: disable
