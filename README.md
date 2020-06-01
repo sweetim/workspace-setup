@@ -9,10 +9,18 @@ This will automatically setup to timx-style workspace
 - autojump
 - history using directional key
 - bash_it (modern theme)
-- VIM
+- vim
 - nvm
 - rust
-- python
+- python3
+- pip3
+
+### VIM plugins
+
+- VIM Vundle
+- nerdtree
+- vim-rainbow
+- vim-airline
 
 ### Usage
 

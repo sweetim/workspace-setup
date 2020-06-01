@@ -1,4 +1,11 @@
 ---
+- name: Clone Vundle VIM repository
+  git:
+    repo: "https://github.com/VundleVim/Vundle.vim.git"
+    dest: "{{ ansible_env.HOME }}/.vim/bundle/Vundle.vim"
+    clone: yes
+    force: yes
+    depth: 1
 - name: Config VIM
   blockinfile:
     state: present
@@ -6,7 +13,29 @@
     marker: '"{mark} ANSIBLE MANAGED BLOCK'
     create: yes
     block: |
+      set nocompatible
+      filetype off
+
+      set rtp+=~/.vim/bundle/Vundle.vim
+      call vundle#begin()
+
+      Plugin 'VundleVim/Vundle.vim'
+
+      Plugin 'preservim/nerdtree'
+      Plugin 'frazrepo/vim-rainbow
+      Plugin 'vim-airline/vim-airline'
+
+      call vundle#end()
+      filetype plugin indent on
+
       set t_Co=256
       :set number
       :set listchars=tab:>·,trail:~,extends:>,precedes:<,space:.
       :set list
+- name: Install VIM Vundle plugins
+  shell: >
+    set -o pipefail
+    vim +PluginInstall +qall
+  args:
+    executable: /bin/bash
+  changed_when: False

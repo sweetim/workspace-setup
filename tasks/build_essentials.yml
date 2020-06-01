@@ -4,6 +4,7 @@
   apt:
     update_cache: yes
     name:
+      - git
       - build-essential
       - cmake
       - pkg-config

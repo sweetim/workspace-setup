@@ -1,19 +1,22 @@
 ---
+- name: Set bash_it folder path
+  set_fact:
+    bash_it_folder: ".bash_it"
 - name: Check if bash-it is available
   stat:
-    path: "{{ ansible_env.HOME }}/.bash_it"
+    path: "{{ ansible_env.HOME }}/{{ bash_it_folder }}"
   register: is_bash_it_available
 - name: Install bash-it
   block:
     - name: Clone bash-it repository
       git:
         repo: "https://github.com/Bash-it/bash-it.git"
-        dest: "{{ ansible_env.HOME }}/.bash_it"
+        dest: "{{ ansible_env.HOME }}/{{ bash_it_folder }}"
         clone: yes
         force: yes
         depth: 1
     - name: Install bash-it
-      shell: "echo 'y' | {{ ansible_env.HOME }}/.bash_it/install.sh"
+      shell: "echo 'y' | {{ ansible_env.HOME }}/{{ bash_it_folder }}/install.sh"
       args:
         executable: /bin/bash
   when: not is_bash_it_available
