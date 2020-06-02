@@ -5,7 +5,7 @@
 
 This will automatically setup to timx-style workspace
 
-### Installation
+### Components
 
 - autojump
 - history using directional key
@@ -27,7 +27,7 @@ This will automatically setup to timx-style workspace
 - indentLine
 - vim-one
 
-### Usage
+### Installation
 
 ```
 ansible-galaxy install sweetim.workspace_setup
