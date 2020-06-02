@@ -1,8 +1,8 @@
 ---
 - name: Install nvm for nodejs
-  shell: >
-    set -o pipefail
+  shell: |
+    set -euo pipefail
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
   args:
+    executable: /bin/bash
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-  changed_when: False

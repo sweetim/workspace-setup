@@ -1,0 +1,12 @@
+---
+- name: Install dependencies
+  become: yes
+  apt:
+    update_cache: yes
+    name:
+      - git
+      - curl
+      # - build-essential
+      # - cmake
+      # - pkg-config
+    state: latest

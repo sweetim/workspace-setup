@@ -1,10 +1,10 @@
 ---
 - name: "Gather machine facts"
   setup:
+- import_tasks: dependencies.yml
 - import_tasks: autojump.yml
 - import_tasks: history.yml
 - import_tasks: bash_it.yml
-- import_tasks: build_essentials.yml
 - import_tasks: vim.yml
 - import_tasks: nvm.yml
 - import_tasks: rust.yml

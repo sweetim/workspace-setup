@@ -14,5 +14,7 @@ platforms:
 provisioner:
   name: ansible
   log: true
+  options:
+    vvv: True
 verifier:
   name: ansible

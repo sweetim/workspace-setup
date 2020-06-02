@@ -1,8 +1,8 @@
 ---
 - name: Install rust
-  shell: >
-    set -o pipefail
+  shell: |
+    set -euo pipefail
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   args:
+    executable: /bin/bash
     creates: "{{ ansible_env.HOME }}/.cargo/bin/cargo"
-  changed_when: False

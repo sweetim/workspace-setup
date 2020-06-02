@@ -4,6 +4,21 @@
 - name: Verify
   hosts: all
   tasks:
-  - name: Example assertion
+  - name: python - get python version
+    command: python --version
+    register: python_output
+    changed_when: False
+  - debug:
+      msg: "{{ python_output }}"
+  - name: python - check version and executable exists
     assert:
-      that: true
+      that: python_output.stdout | length > 0
+  - name: rustup - get rustup version
+    command: rustup --version
+    register: rustup_output
+    changed_when: False
+  - debug:
+      msg: "{{ rustup_output }}"
+  - name: rustup - check version and executable exists
+    assert:
+      that: rustup_output.stdout | length > 0
