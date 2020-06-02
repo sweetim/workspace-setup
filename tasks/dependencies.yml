@@ -6,7 +6,7 @@
     name:
       - git
       - curl
-      # - build-essential
-      # - cmake
-      # - pkg-config
+      - build-essential
+      - cmake
+      - pkg-config
     state: latest
