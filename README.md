@@ -1,6 +1,7 @@
 ## Timx workspace setup
 ![CI](https://github.com/sweetim/workspace-setup/workflows/CI/badge.svg)
 ![Ansible-galaxy](https://img.shields.io/ansible/quality/48993)
+![ansible-downloads](https://img.shields.io/ansible/role/d/48993?color=brightgreen&label=downloads)
 
 This will automatically setup to timx-style workspace
 
@@ -19,8 +20,12 @@ This will automatically setup to timx-style workspace
 
 - VIM Vundle
 - nerdtree
+- nerdtree-gitplugin
 - vim-rainbow
-- vim-airline
+- airline/vim-airline
+- vim-fugitive
+- indentLine
+- vim-one
 
 ### Usage
 
