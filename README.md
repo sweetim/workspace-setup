@@ -12,6 +12,7 @@ This will automatically setup to timx-style workspace
 - bash_it (modern theme)
 - vim
 - nvm
+- nodejs
 - rust
 - python3
 - pip3
