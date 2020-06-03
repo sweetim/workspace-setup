@@ -55,6 +55,8 @@
       " set background=light " for the light version
       colorscheme one
 
+      map <C-b> :NERDTreeToggle<CR>
+
       set t_Co=256
       :set number
 
