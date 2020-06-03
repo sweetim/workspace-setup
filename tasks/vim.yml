@@ -1,4 +1,11 @@
 ---
+- name: Install VIM
+  become: yes
+  apt:
+    update_cache: yes
+    name:
+      - vim
+    state: latest
 - name: Clone Vundle VIM repository
   git:
     repo: "https://github.com/VundleVim/Vundle.vim.git"
@@ -61,7 +68,7 @@
       :set number
 
 - name: Install VIM Vundle plugins
-  shell: >
+  shell: |
     set -o pipefail
     vim +PluginInstall +qall
   args:
