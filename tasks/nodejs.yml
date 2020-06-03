@@ -6,3 +6,8 @@
   args:
     executable: /bin/bash
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+- name: Install Node.js using nvm
+  shell: 'source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install --lts'
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/versions/node"
+    executable: /bin/bash
