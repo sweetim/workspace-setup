@@ -1,0 +1,12 @@
+---
+- name: Execute command
+  shell: |
+    set -euo pipefail
+    "{{ command }}"
+  args:
+    executable: /bin/bash
+  register: command_output
+  changed_when: False
+- name: Check command is executable and output values
+  assert:
+    that: command_output.stdout | length > 0
