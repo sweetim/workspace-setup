@@ -2,7 +2,7 @@
 - name: Execute command
   shell: |
     set -euo pipefail
-    "{{ command }}"
+    {{ command }}
   args:
     executable: /bin/bash
   register: command_output
