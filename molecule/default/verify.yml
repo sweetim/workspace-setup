@@ -4,21 +4,13 @@
 - name: Verify
   hosts: all
   tasks:
-  - name: python - get python version
-    command: python --version
-    register: python_output
-    changed_when: False
-  - debug:
-      msg: "{{ python_output }}"
-  - name: python - check version and executable exists
-    assert:
-      that: python_output.stdout | length > 0
-  - name: rustup - get rustup version
-    command: rustup --version
-    register: rustup_output
-    changed_when: False
-  - debug:
-      msg: "{{ rustup_output }}"
-  - name: rustup - check version and executable exists
-    assert:
-      that: rustup_output.stdout | length > 0
+  - name: assert command version
+    include_role:
+      name: assert_shell_command
+    vars:
+      command: "{{ item }}"
+    with_items:
+      - python --version
+      - source ~/.cargo/env && rustup --version
+      - source ~/.nvm/nvm.sh && nvm --version
+      - source ~/.nvm/nvm.sh && node --version
