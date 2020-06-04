@@ -29,7 +29,7 @@
       Plugin 'VundleVim/Vundle.vim'
 
       Plugin 'preservim/nerdtree'
-      Plugin 'Xuyuanp/nerdtree-gitplugin'
+      Plugin 'Xuyuanp/nerdtree-git-plugin'
       Plugin 'frazrepo/vim-rainbow'
       Plugin 'vim-airline/vim-airline'
       Plugin 'tpope/vim-fugitive'
@@ -70,7 +70,7 @@
 - name: Install VIM Vundle plugins
   shell: |
     set -o pipefail
-    vim +PluginInstall +qall
+    vim +PluginInstall +qall &> /dev/null
   args:
     executable: /bin/bash
   changed_when: False
