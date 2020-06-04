@@ -29,6 +29,7 @@
 
       Plugin 'preservim/nerdtree'
       Plugin 'Xuyuanp/nerdtree-git-plugin'
+      Plugin 'airblade/vim-gitgutter'
       Plugin 'frazrepo/vim-rainbow'
       Plugin 'vim-airline/vim-airline'
       Plugin 'tpope/vim-fugitive'

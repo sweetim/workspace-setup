@@ -21,7 +21,8 @@ This will automatically setup to timx-style workspace
 
 - VIM Vundle
 - nerdtree
-- nerdtree-gitplugin
+- nerdtree-git-plugin
+- vim-gitgutter
 - vim-rainbow
 - airline/vim-airline
 - vim-fugitive
