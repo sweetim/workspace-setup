@@ -2,7 +2,6 @@
 - name: Install dependencies
   become: yes
   apt:
-    update_cache: yes
     name:
       - git
       - curl

@@ -1,6 +1,10 @@
 ---
 - name: "Gather machine facts"
   setup:
+- name: Update apt caches
+  become: yes
+  apt:
+    update_cache: yes
 - import_tasks: dependencies.yml
 - import_tasks: autojump.yml
 - import_tasks: history.yml

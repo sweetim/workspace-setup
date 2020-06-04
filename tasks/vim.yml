@@ -2,7 +2,6 @@
 - name: Install VIM
   become: yes
   apt:
-    update_cache: yes
     name:
       - vim
     state: latest
@@ -60,7 +59,7 @@
 
       set background=dark " for the dark version
       " set background=light " for the light version
-      colorscheme one
+      silent! colorscheme one
 
       map <C-b> :NERDTreeToggle<CR>
 
@@ -78,7 +77,6 @@
 - name: Install powerline font
   become: yes
   apt:
-    update_cache: yes
     name:
       - fonts-powerline
     state: latest
