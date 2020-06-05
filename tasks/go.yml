@@ -1,0 +1,46 @@
+---
+- name: Install gvm dependencies
+  become: yes
+  apt:
+    name:
+      - git
+      - curl
+      - mercurial
+      - make
+      - binutils
+      - bison
+      - gcc
+      - build-essential
+    state: latest
+- name: Install gvm
+  shell: |
+    set -euo pipefail
+    curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer | bash
+  args:
+    executable: /bin/bash
+    creates: "{{ ansible_env.HOME }}/.gvm/scripts/gvm"
+- name: Check GO is installed
+  command: which go
+  register: go_command_output
+  changed_when: False
+  ignore_errors: yes
+- name: Install latest GO version
+  when: go_command_output.rc != 0
+  block:
+    - name: Get latest GO version
+      shell: |
+        source ~/.gvm/scripts/gvm
+        gvm listall | grep -oP 'go\d+.\d+[.\d]*' | sort --version-sort | tail -n1
+      args:
+        executable: /bin/bash
+      register: go_latest_version_output
+    - name: "Register latest go version to variable"
+      set_fact:
+        go_latest_version: "{{ go_latest_version_output.stdout }}"
+    - name: Install latest GO version
+      shell: |
+        source ~/.gvm/scripts/gvm
+        gvm install {{ go_latest_version }} --binary
+        gvm use {{ go_latest_version }} --default
+      args:
+        executable: /bin/bash

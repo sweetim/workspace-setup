@@ -16,6 +16,8 @@ This will automatically setup to timx-style workspace
 - rust
 - python3
 - pip3
+- gvm
+- go
 
 ### VIM plugins
 

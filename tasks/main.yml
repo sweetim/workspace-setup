@@ -13,3 +13,4 @@
 - import_tasks: nodejs.yml
 - import_tasks: rust.yml
 - import_tasks: python.yml
+- import_tasks: go.yml

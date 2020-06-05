@@ -1,7 +1,7 @@
 ---
-- name: Execute command
+- name: "Execute command - ({{ command }})"
   shell: |
-    set -euo pipefail
+    set -Eeo pipefail
     {{ command }}
   args:
     executable: /bin/bash
@@ -9,4 +9,4 @@
   changed_when: False
 - name: Check command is executable and output values
   assert:
-    that: command_output.stdout | length > 0
+    that: command_output.rc == 0

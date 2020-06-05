@@ -14,3 +14,5 @@
       - source ~/.cargo/env && rustup --version
       - source ~/.nvm/nvm.sh && nvm --version
       - source ~/.nvm/nvm.sh && node --version
+      - source ~/.gvm/scripts/gvm && gvm version
+      - source ~/.gvm/scripts/gvm && go version
