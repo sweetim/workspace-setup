@@ -12,9 +12,3 @@
     line: export PATH="${HOME}/.local/bin:${PATH}"
     regexp: export PATH=".*.${HOME}/.local/bin:${PATH}.*"
     state: present
-- name: symlink /usr/bin/python -> /usr/bin/python3
-  file:
-    src: /usr/bin/python3
-    dest: /usr/bin/python
-    state: link
-  become: true

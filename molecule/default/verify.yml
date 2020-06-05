@@ -10,7 +10,7 @@
     vars:
       command: "{{ item }}"
     with_items:
-      - python --version
+      - python3 --version
       - source ~/.cargo/env && rustup --version
       - source ~/.nvm/nvm.sh && nvm --version
       - source ~/.nvm/nvm.sh && node --version
