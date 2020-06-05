@@ -34,6 +34,7 @@
       args:
         executable: /bin/bash
       register: go_latest_version_output
+      changed_when: False
     - name: "Register latest go version to variable"
       set_fact:
         go_latest_version: "{{ go_latest_version_output.stdout }}"
@@ -44,3 +45,4 @@
         gvm use {{ go_latest_version }} --default
       args:
         executable: /bin/bash
+        creates: "{{ ansible_env.HOME }}/.gvm/gos/{{ go_latest_version }}/bin/go"
