@@ -19,7 +19,7 @@
       shell: "echo 'y' | {{ ansible_env.HOME }}/{{ bash_it_folder }}/install.sh"
       args:
         executable: /bin/bash
-  when: not is_bash_it_available
+  when: not is_bash_it_available|bool
 - name: Set bash-it theme
   replace:
     path: "{{ ansible_env.HOME }}/.bashrc"
