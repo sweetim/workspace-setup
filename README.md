@@ -16,8 +16,6 @@ This will automatically setup to timx-style workspace
 - rust
 - python3
 - pip3
-- gvm
-- go
 
 ### VIM plugins
 
@@ -30,6 +28,12 @@ This will automatically setup to timx-style workspace
 - vim-fugitive
 - indentLine
 - vim-one
+
+### Dependencies
+
+```
+apt install ansible
+```
 
 ### Installation
 
