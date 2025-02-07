@@ -4,4 +4,4 @@
   tasks:
     - name: "Include workspace-setup"
       include_role:
-        name: "workspace-setup"
+        name: workspace-setup
