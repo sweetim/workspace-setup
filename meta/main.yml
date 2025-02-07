@@ -5,7 +5,7 @@ galaxy_info:
   company: timx
   license: MIT
   namespace: sweetim
-  role_name: workspace_setup
+  role_name: workspace-setup
   min_ansible_version: 2.6
   platforms:
     - name: Ubuntu
