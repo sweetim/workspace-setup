@@ -4,4 +4,4 @@
   tasks:
     - name: "Include workspace-setup"
       include_role:
-        name: workspace-setup
+        name: sweetim.workspace_setup
