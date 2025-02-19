@@ -7,6 +7,8 @@
     executable: /bin/bash
   register: command_output
   changed_when: False
+- debug:
+    msg: "{{ command_output.stdout }}"
 - name: Check command is executable and output values
   assert:
     that: command_output.rc == 0

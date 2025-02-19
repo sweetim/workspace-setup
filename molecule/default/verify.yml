@@ -1,6 +1,4 @@
 ---
-# This is an example playbook to execute Ansible tests.
-
 - name: Verify
   hosts: all
   tasks:
@@ -11,6 +9,7 @@
       command: "{{ item }}"
     with_items:
       - python3 --version
+      - pip --version
       - vim --version
       - source ~/.cargo/env && rustup --version
       - source ~/.nvm/nvm.sh && nvm --version
