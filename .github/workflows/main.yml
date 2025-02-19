@@ -31,7 +31,7 @@ jobs:
     needs: lint_and_test
     steps:
       - name: publish to ansible galaxy
-        uses: robertdebock/galaxy-action@1.0.3
+        uses: robertdebock/galaxy-action@1.2.1
         with:
           galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
           git_branch: master
