@@ -1,0 +1,48 @@
+---
+- name: Check if nvm is installed
+  stat:
+    path: "{{ ansible_env.HOME }}/.nvm"
+  register: nvm_dir
+
+- name: Check if nvm is in bashrc
+  shell: grep -q 'NVM_DIR' "{{ ansible_env.HOME }}/.bashrc" || true
+  register: nvm_in_bashrc
+  changed_when: false
+  failed_when: false
+
+- name: Remove nvm directory
+  file:
+    path: "{{ ansible_env.HOME }}/.nvm"
+    state: absent
+  when: nvm_dir.stat.exists
+
+- name: Remove nvm lines from bashrc
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    regexp: "{{ item }}"
+    state: absent
+  loop:
+    - '^export NVM_DIR='
+    - '^\[ -s "\$NVM_DIR/nvm\.sh" \]'
+    - '^\[ -s "\$NVM_DIR/bash_completion" \]'
+  when: nvm_in_bashrc.rc == 0
+
+- name: Check if mise is already installed
+  stat:
+    path: "{{ ansible_env.HOME }}/.local/bin/mise"
+  register: mise_binary
+
+- name: Install mise
+  shell: |
+    set -euo pipefail
+    curl https://mise.run | sh
+  args:
+    executable: /bin/bash
+  when: not mise_binary.stat.exists
+
+- name: Ensure mise is activated in bash profile
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: 'eval "$({{ ansible_env.HOME }}/.local/bin/mise activate bash)"'
+    create: yes
+    state: present

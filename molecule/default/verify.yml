@@ -11,6 +11,7 @@
       - python3 --version
       - pip --version
       - vim --version
-      - source ~/.cargo/env && rustup --version
-      - source ~/.nvm/nvm.sh && nvm --version
-      - source ~/.nvm/nvm.sh && node --version
+      - mise --version
+      - node --version
+      - rustc --version
+      - starship --version

@@ -1,8 +1,9 @@
 ---
-- name: Install rust
+- name: Install Rust latest via mise
   shell: |
     set -euo pipefail
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    eval "$({{ ansible_env.HOME }}/.local/bin/mise activate bash)"
+    mise use --global rust@latest
   args:
     executable: /bin/bash
-    creates: "{{ ansible_env.HOME }}/.cargo/bin/cargo"
+    creates: "{{ ansible_env.HOME }}/.local/share/mise/installs/rust"

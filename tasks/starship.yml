@@ -1,0 +1,46 @@
+---
+- name: Check if Starship is installed
+  command: which starship
+  register: starship_check
+  failed_when: false
+  changed_when: false
+
+- name: Install Starship
+  block:
+    - name: Download and install Starship
+      shell: curl -sS https://starship.rs/install.sh | sh -s -- -y
+      args:
+        executable: /bin/bash
+      environment:
+        PATH: "{{ ansible_env.PATH }}:/usr/local/bin"
+  when: starship_check.rc != 0
+
+- name: Initialize Starship in bashrc
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: 'eval "$(starship init bash)"'
+    state: present
+    create: yes
+
+- name: Remove bash-it initialization from bashrc
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    regexp: "{{ item }}"
+    state: absent
+  loop:
+    - '^\s*source.*\.bash_it/bash_it\.sh'
+    - '^\s*export BASH_IT_THEME='
+    - '^\s*\[\[.*\.bash_it/bash_it\.sh.*\]\].*source'
+
+- name: Create Starship config directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config"
+    state: directory
+    mode: '0755'
+
+- name: Copy Starship configuration
+  copy:
+    src: starship.toml
+    dest: "{{ ansible_env.HOME }}/.config/starship.toml"
+    mode: '0644'
+    force: no

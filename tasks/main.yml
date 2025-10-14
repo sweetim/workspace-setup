@@ -8,8 +8,9 @@
 - import_tasks: dependencies.yml
 - import_tasks: autojump.yml
 - import_tasks: history.yml
-- import_tasks: bash_it.yml
+- import_tasks: starship.yml
 - import_tasks: vim.yml
-- import_tasks: nodejs.yml
-- import_tasks: rust.yml
 - import_tasks: python.yml
+- import_tasks: mise.yml
+- import_tasks: rust.yml
+- import_tasks: nodejs.yml

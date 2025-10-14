@@ -1,13 +1,9 @@
 ---
-- name: Install nvm for nodejs
+- name: Install Node.js LTS via mise
   shell: |
     set -euo pipefail
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+    eval "$({{ ansible_env.HOME }}/.local/bin/mise activate bash)"
+    mise use --global node@lts
   args:
     executable: /bin/bash
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
-- name: Install Node.js using nvm
-  shell: 'source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install --lts'
-  args:
-    creates: "{{ ansible_env.HOME }}/.nvm/versions/node"
-    executable: /bin/bash
+    creates: "{{ ansible_env.HOME }}/.local/share/mise/installs/node"
