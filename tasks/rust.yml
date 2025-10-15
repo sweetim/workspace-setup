@@ -1,9 +1,18 @@
 ---
+- name: Check if Rust is installed
+  command: which rustc
+  register: rust_check
+  ignore_errors: true
+  changed_when: false
+
+- name: Remove existing Rust installation
+  command: rustup self uninstall -y
+  when: rust_check.rc == 0
+
 - name: Install Rust latest via mise
   shell: |
     set -euo pipefail
-    eval "$({{ ansible_env.HOME }}/.local/bin/mise activate bash)"
-    mise use --global rust@latest
+    {{ ansible_env.HOME }}/.local/bin/mise use --global rust@latest
   args:
     executable: /bin/bash
     creates: "{{ ansible_env.HOME }}/.local/share/mise/installs/rust"

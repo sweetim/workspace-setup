@@ -1,9 +1,39 @@
 ---
+- name: Check if nvm exists
+  stat:
+    path: "{{ ansible_env.HOME }}/.nvm"
+  register: nvm_dir
+
+- name: Remove nvm
+  block:
+    - name: Unload nvm
+      shell: |
+        set -euo pipefail
+        [ -s "{{ ansible_env.HOME }}/.nvm/nvm.sh" ] && \. "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+        nvm unload || true
+      args:
+        executable: /bin/bash
+
+    - name: Remove nvm directory
+      file:
+        path: "{{ ansible_env.HOME }}/.nvm"
+        state: absent
+
+    - name: Remove nvm lines from .bashrc
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.bashrc"
+        regexp: "{{ item }}"
+        state: absent
+      loop:
+        - '^export NVM_DIR='
+        - '^\[ -s "\$NVM_DIR/nvm\.sh" \]'
+        - '^\[\[ -r \$NVM_DIR/bash_completion \]\]'
+  when: nvm_dir.stat.exists
+
 - name: Install Node.js LTS via mise
   shell: |
     set -euo pipefail
-    eval "$({{ ansible_env.HOME }}/.local/bin/mise activate bash)"
-    mise use --global node@lts
+    {{ ansible_env.HOME }}/.local/bin/mise use --global node@lts
   args:
     executable: /bin/bash
     creates: "{{ ansible_env.HOME }}/.local/share/mise/installs/node"
