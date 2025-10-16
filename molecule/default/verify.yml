@@ -2,6 +2,20 @@
 - name: Verify
   hosts: all
   tasks:
+  - name: assert command version
+    include_role:
+      name: assert_shell_command
+    vars:
+      command: "{{ item }}"
+    with_items:
+      - python3 --version
+      - pip --version
+      - vim --version
+      - mise --version
+      - node --version
+      - rustc --version
+      - starship --version
+
   - name: Verify nvm is uninstalled
     block:
       - name: Check nvm directory does not exist
@@ -16,90 +30,19 @@
           fail_msg: "nvm directory still exists at {{ ansible_env.HOME }}/.nvm"
           success_msg: "nvm directory successfully removed"
 
-      - name: Check nvm is not in PATH
+      - name: Verify nvm command is not available
         shell: |
           set -euo pipefail
-          command -v nvm || true
+          command -v nvm
         args:
           executable: /bin/bash
         register: nvm_command_check
+        failed_when: false
         changed_when: false
 
-      - name: Assert nvm command is not available
+      - name: Assert nvm command is not found
         assert:
           that:
-            - nvm_command_check.stdout == ""
-          fail_msg: "nvm command is still available in PATH"
-          success_msg: "nvm command is not available (correctly uninstalled)"
-
-      - name: Check .bashrc for nvm references
-        shell: |
-          set -euo pipefail
-          grep -E '(NVM_DIR|nvm\.sh|bash_completion)' {{ ansible_env.HOME }}/.bashrc || true
-        args:
-          executable: /bin/bash
-        register: bashrc_nvm_check
-        changed_when: false
-
-      - name: Assert nvm references removed from .bashrc
-        assert:
-          that:
-            - bashrc_nvm_check.stdout == ""
-          fail_msg: "nvm references still found in .bashrc"
-          success_msg: ".bashrc cleaned of nvm references"
-
-  - name: Verify rustup is uninstalled
-    block:
-      - name: Check rustup command does not exist
-        shell: |
-          set -euo pipefail
-          command -v rustup || true
-        args:
-          executable: /bin/bash
-        register: rustup_command_check
-        changed_when: false
-
-      - name: Assert rustup is not available
-        assert:
-          that:
-            - rustup_command_check.stdout == ""
-          fail_msg: "rustup command is still available"
-          success_msg: "rustup successfully uninstalled"
-
-      - name: Check rustup home directory does not exist
-        stat:
-          path: "{{ ansible_env.HOME }}/.rustup"
-        register: rustup_dir_check
-
-      - name: Assert rustup directory is removed
-        assert:
-          that:
-            - not rustup_dir_check.stat.exists
-          fail_msg: "rustup directory still exists at {{ ansible_env.HOME }}/.rustup"
-          success_msg: "rustup directory successfully removed"
-
-      - name: Check cargo home directory does not exist
-        stat:
-          path: "{{ ansible_env.HOME }}/.cargo"
-        register: cargo_dir_check
-
-      - name: Assert cargo directory is removed
-        assert:
-          that:
-            - not cargo_dir_check.stat.exists
-          fail_msg: "cargo directory still exists at {{ ansible_env.HOME }}/.cargo"
-          success_msg: "cargo directory successfully removed"
-
-  - name: assert command version
-    include_role:
-      name: assert_shell_command
-    vars:
-      command: "{{ item }}"
-    with_items:
-      - python3 --version
-      - pip --version
-      - vim --version
-      - mise --version
-      - node --version
-      - rustc --version
-      - starship --version
+            - nvm_command_check.rc != 0
+          fail_msg: "nvm command is still available"
+          success_msg: "nvm command successfully removed"

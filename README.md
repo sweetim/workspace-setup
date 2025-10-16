@@ -9,8 +9,9 @@ This will automatically setup to timx-style workspace
 
 - autojump
 - history using directional key
-- bash_it (modern theme)
+- starship
 - vim
+- mise
 - nvm
 - nodejs
 - rust
@@ -31,7 +32,7 @@ This will automatically setup to timx-style workspace
 
 ### Dependencies
 
-```
+```bash
 apt install ansible
 ```
 
@@ -50,6 +51,4 @@ or using ansible-playbook
   hosts: 127.0.0.1
   roles:
   - role: sweetim.workspace_setup
-    bash_it_theme: "modern"
-
 ```

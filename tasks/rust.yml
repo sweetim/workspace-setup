@@ -2,7 +2,7 @@
 - name: Check if Rust is installed
   command: which rustc
   register: rust_check
-  ignore_errors: true
+  failed_when: false
   changed_when: false
 
 - name: Remove existing Rust installation

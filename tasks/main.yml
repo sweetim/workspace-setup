@@ -5,6 +5,7 @@
   become: yes
   apt:
     update_cache: yes
+  changed_when: false
 - import_tasks: dependencies.yml
 - import_tasks: autojump.yml
 - import_tasks: history.yml

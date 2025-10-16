@@ -2,7 +2,7 @@
 - name: "Execute command - ({{ command }})"
   shell: |
     set -Eeo pipefail
-    {{ ansible_env.HOME }}/.local/bin/mise activate bash
+    eval "$({{ ansible_env.HOME }}/.local/bin/mise activate bash)"
     {{ command }}
   args:
     executable: /bin/bash
