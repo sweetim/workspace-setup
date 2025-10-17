@@ -1,7 +1,6 @@
 ## Timx workspace setup
 ![CI](https://github.com/sweetim/workspace-setup/workflows/CI/badge.svg)
-![Ansible-galaxy](https://img.shields.io/ansible/quality/48993)
-![ansible-downloads](https://img.shields.io/ansible/role/d/48993?color=brightgreen&label=downloads)
+![ansible-downloads](https://img.shields.io/ansible/role/d/sweetim/workspace_setup?style=flat-square&label=download&logo=ansible&logoColor=%23F00&color=brightgreen)
 
 This will automatically setup to timx-style workspace
 
