@@ -1,4 +1,4 @@
-## Timx workspace setup
+## timx workspace setup
 ![CI](https://github.com/sweetim/workspace-setup/workflows/CI/badge.svg)
 ![ansible-downloads](https://img.shields.io/ansible/role/d/sweetim/workspace_setup?style=flat-square&label=download&logo=ansible&logoColor=%23F00&color=brightgreen)
 
@@ -11,11 +11,11 @@ This will automatically setup to timx-style workspace
 - starship
 - vim
 - mise
-- nvm
 - nodejs
 - rust
 - python3
 - pip3
+- uv
 
 ### VIM plugins
 
@@ -37,14 +37,14 @@ apt install ansible
 
 ### Installation
 
-```
+```bash
 ansible-galaxy install sweetim.workspace_setup
 ansible localhost -m include_role -a name=sweetim.workspace_setup --diff --ask-become
 ```
 
 or using ansible-playbook
 
-```
+```yaml
 ---
 - name: sample
   hosts: 127.0.0.1
