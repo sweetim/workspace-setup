@@ -1,0 +1,8 @@
+---
+- name: Install Bun via mise
+  shell: |
+    set -euo pipefail
+    {{ ansible_env.HOME }}/.local/bin/mise use --global bun@latest
+  args:
+    executable: /bin/bash
+    creates: "{{ ansible_env.HOME }}/.local/share/mise/installs/bun"

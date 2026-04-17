@@ -12,6 +12,7 @@ This will automatically setup to timx-style workspace
 - vim
 - mise
 - nodejs
+- bun
 - rust
 - python3
 - pip3

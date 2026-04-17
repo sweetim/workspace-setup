@@ -16,6 +16,7 @@
       - rustc --version
       - starship --version
       - uv --version
+      - bun --version
 
   - name: Verify nvm is uninstalled
     block:

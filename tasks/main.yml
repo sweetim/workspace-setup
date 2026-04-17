@@ -16,3 +16,4 @@
 - import_tasks: mise.yml
 - import_tasks: rust.yml
 - import_tasks: nodejs.yml
+- import_tasks: bun.yml
