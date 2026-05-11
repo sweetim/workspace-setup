@@ -17,3 +17,4 @@
 - import_tasks: rust.yml
 - import_tasks: nodejs.yml
 - import_tasks: bun.yml
+- import_tasks: docker.yml
