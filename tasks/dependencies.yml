@@ -8,4 +8,6 @@
       - build-essential
       - cmake
       - pkg-config
+      - unzip
+      - fontconfig
     state: latest

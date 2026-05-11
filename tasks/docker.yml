@@ -61,9 +61,15 @@
     append: yes
   when: docker_check.rc != 0
 
+- name: Check if systemd is running
+  stat:
+    path: /run/systemd/system
+  register: systemd_running
+
 - name: Ensure Docker service is enabled
   become: yes
   systemd:
     name: docker
     enabled: yes
     state: started
+  when: systemd_running.stat.exists
