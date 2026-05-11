@@ -17,6 +17,7 @@
       - starship --version
       - uv --version
       - bun --version
+      - docker --version
 
   - name: Verify nvm is uninstalled
     block:
