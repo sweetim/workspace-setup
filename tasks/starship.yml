@@ -5,6 +5,36 @@
   failed_when: false
   changed_when: false
 
+- name: Check if FiraCode Nerd Font is installed
+  stat:
+    path: "{{ ansible_env.HOME }}/.local/share/fonts/FiraCodeNerdFont-Regular.ttf"
+  register: firacode_font_check
+
+- name: Install FiraCode Nerd Font
+  block:
+    - name: Create font directory
+      file:
+        path: "{{ ansible_env.HOME }}/.local/share/fonts"
+        state: directory
+        mode: '0755'
+
+    - name: Download FiraCode Nerd Font
+      get_url:
+        url: "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip"
+        dest: "/tmp/FiraCode.zip"
+        mode: '0644'
+
+    - name: Extract FiraCode Nerd Font
+      unarchive:
+        src: "/tmp/FiraCode.zip"
+        dest: "{{ ansible_env.HOME }}/.local/share/fonts"
+        remote_src: yes
+
+    - name: Rebuild font cache
+      command: fc-cache -fv {{ ansible_env.HOME }}/.local/share/fonts
+      changed_when: false
+  when: not firacode_font_check.stat.exists
+
 - name: Install Starship
   block:
     - name: Download and install Starship
