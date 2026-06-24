@@ -3,10 +3,10 @@
   become: yes
   apt:
     name: autojump
-    state: latest
+    state: present
 - name: Append autojump into bashrc
   lineinfile:
-    path: ~/.bashrc
+    path: "{{ workspace_setup_home }}/.bashrc"
     line: . /usr/share/autojump/autojump.sh
     regexp: .*autojump.sh
     state: present

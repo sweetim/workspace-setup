@@ -1,0 +1,21 @@
+---
+- name: Check if nvm is installed
+  stat:
+    path: "{{ workspace_setup_home }}/.nvm"
+  register: nvm_dir
+
+- name: Remove nvm directory
+  file:
+    path: "{{ workspace_setup_home }}/.nvm"
+    state: absent
+  when: nvm_dir.stat.exists
+
+- name: Remove nvm initialization lines from bashrc
+  lineinfile:
+    path: "{{ workspace_setup_home }}/.bashrc"
+    regexp: "{{ item }}"
+    state: absent
+  loop:
+    - 'export NVM_DIR='
+    - 'NVM_DIR/nvm\.sh'
+    - 'NVM_DIR/bash_completion'

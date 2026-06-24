@@ -10,4 +10,4 @@
       - pkg-config
       - unzip
       - fontconfig
-    state: latest
+    state: present

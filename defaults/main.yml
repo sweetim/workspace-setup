@@ -1,2 +1,23 @@
 ---
-# No default variables needed for Starship
+# Ordered list of components to install. Remove an entry to skip it, or pass a
+# custom list via `workspace_setup_components` to install a subset.
+#
+# Order matters: 'mise' must run before 'rust', 'nodejs' and 'bun', which
+# install their toolchains through mise.
+workspace_setup_components:
+  - dependencies
+  - autojump
+  - history
+  - starship
+  - vim
+  - mise
+  - python
+  - uv
+  - rust
+  - nodejs
+  - bun
+  - docker
+
+# Home directory of the target user. Centralised so module paths expand
+# consistently instead of relying on '~' expansion.
+workspace_setup_home: "{{ ansible_env.HOME }}"

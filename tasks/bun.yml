@@ -1,8 +1,21 @@
 ---
+- name: Ensure mise is available (required to install Bun)
+  stat:
+    path: "{{ workspace_setup_home }}/.local/bin/mise"
+  register: mise_binary
+
+- name: Fail if mise is not installed
+  fail:
+    msg: >-
+      The 'mise' component is required to install Bun but was not found.
+      Make sure 'mise' is enabled and runs before 'bun' in
+      workspace_setup_components.
+  when: not mise_binary.stat.exists
+
 - name: Install Bun via mise
   shell: |
     set -euo pipefail
-    {{ ansible_env.HOME }}/.local/bin/mise use --global bun@latest
+    {{ workspace_setup_home }}/.local/bin/mise use --global bun@latest
   args:
     executable: /bin/bash
-    creates: "{{ ansible_env.HOME }}/.local/share/mise/installs/bun"
+    creates: "{{ workspace_setup_home }}/.local/share/mise/installs/bun"

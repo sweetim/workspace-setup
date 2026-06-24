@@ -2,7 +2,7 @@
 - name: Install history hotkeys, if inputrc wasn't defined before
   blockinfile:
     state: present
-    path: ~/.inputrc
+    path: "{{ workspace_setup_home }}/.inputrc"
     create: yes
     block: |
       "\e[A": history-search-backward

@@ -7,14 +7,14 @@
 
 - name: Check if FiraCode Nerd Font is installed
   stat:
-    path: "{{ ansible_env.HOME }}/.local/share/fonts/FiraCodeNerdFont-Regular.ttf"
+    path: "{{ workspace_setup_home }}/.local/share/fonts/FiraCodeNerdFont-Regular.ttf"
   register: firacode_font_check
 
 - name: Install FiraCode Nerd Font
   block:
     - name: Create font directory
       file:
-        path: "{{ ansible_env.HOME }}/.local/share/fonts"
+        path: "{{ workspace_setup_home }}/.local/share/fonts"
         state: directory
         mode: '0755'
 
@@ -27,11 +27,11 @@
     - name: Extract FiraCode Nerd Font
       unarchive:
         src: "/tmp/FiraCode.zip"
-        dest: "{{ ansible_env.HOME }}/.local/share/fonts"
+        dest: "{{ workspace_setup_home }}/.local/share/fonts"
         remote_src: yes
 
     - name: Rebuild font cache
-      command: fc-cache -fv {{ ansible_env.HOME }}/.local/share/fonts
+      command: fc-cache -fv {{ workspace_setup_home }}/.local/share/fonts
       changed_when: false
   when: not firacode_font_check.stat.exists
 
@@ -47,14 +47,14 @@
 
 - name: Initialize Starship in bashrc
   lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: "{{ workspace_setup_home }}/.bashrc"
     line: 'eval "$(starship init bash)"'
     state: present
     create: yes
 
 - name: Remove bash-it initialization from bashrc
   lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: "{{ workspace_setup_home }}/.bashrc"
     regexp: "{{ item }}"
     state: absent
   loop:
@@ -64,13 +64,13 @@
 
 - name: Create Starship config directory
   file:
-    path: "{{ ansible_env.HOME }}/.config"
+    path: "{{ workspace_setup_home }}/.config"
     state: directory
     mode: '0755'
 
 - name: Copy Starship configuration
   copy:
     src: starship.toml
-    dest: "{{ ansible_env.HOME }}/.config/starship.toml"
+    dest: "{{ workspace_setup_home }}/.config/starship.toml"
     mode: '0644'
     force: no

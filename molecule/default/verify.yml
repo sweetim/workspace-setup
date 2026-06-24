@@ -2,50 +2,50 @@
 - name: Verify
   hosts: all
   tasks:
-  - name: assert command version
-    include_role:
-      name: assert_shell_command
-    vars:
-      command: "{{ item }}"
-    with_items:
-      - python3 --version
-      - pip --version
-      - vim --version
-      - mise --version
-      - node --version
-      - rustc --version
-      - starship --version
-      - uv --version
-      - bun --version
-      - docker --version
+    - name: assert command version
+      include_role:
+        name: assert_shell_command
+      vars:
+        command: "{{ item }}"
+      with_items:
+        - python3 --version
+        - pip --version
+        - vim --version
+        - mise --version
+        - node --version
+        - rustc --version
+        - starship --version
+        - uv --version
+        - bun --version
+        - docker --version
 
-  - name: Verify nvm is uninstalled
-    block:
-      - name: Check nvm directory does not exist
-        stat:
-          path: "{{ ansible_env.HOME }}/.nvm"
-        register: nvm_dir_check
+    - name: Verify nvm is uninstalled
+      block:
+        - name: Check nvm directory does not exist
+          stat:
+            path: "{{ ansible_env.HOME }}/.nvm"
+          register: nvm_dir_check
 
-      - name: Assert nvm directory is removed
-        assert:
-          that:
-            - not nvm_dir_check.stat.exists
-          fail_msg: "nvm directory still exists at {{ ansible_env.HOME }}/.nvm"
-          success_msg: "nvm directory successfully removed"
+        - name: Assert nvm directory is removed
+          assert:
+            that:
+              - not nvm_dir_check.stat.exists
+            fail_msg: "nvm directory still exists at {{ ansible_env.HOME }}/.nvm"
+            success_msg: "nvm directory successfully removed"
 
-      - name: Verify nvm command is not available
-        shell: |
-          set -euo pipefail
-          command -v nvm
-        args:
-          executable: /bin/bash
-        register: nvm_command_check
-        failed_when: false
-        changed_when: false
+        - name: Verify nvm command is not available
+          shell: |
+            set -euo pipefail
+            command -v nvm
+          args:
+            executable: /bin/bash
+          register: nvm_command_check
+          failed_when: false
+          changed_when: false
 
-      - name: Assert nvm command is not found
-        assert:
-          that:
-            - nvm_command_check.rc != 0
-          fail_msg: "nvm command is still available"
-          success_msg: "nvm command successfully removed"
+        - name: Assert nvm command is not found
+          assert:
+            that:
+              - nvm_command_check.rc != 0
+            fail_msg: "nvm command is still available"
+            success_msg: "nvm command successfully removed"

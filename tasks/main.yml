@@ -1,20 +1,77 @@
 ---
 - name: "Gather machine facts"
   setup:
+  tags: always
+
 - name: Update apt caches
   become: yes
   apt:
     update_cache: yes
   changed_when: false
-- import_tasks: dependencies.yml
-- import_tasks: autojump.yml
-- import_tasks: history.yml
-- import_tasks: starship.yml
-- import_tasks: vim.yml
-- import_tasks: python.yml
-- import_tasks: uv.yml
-- import_tasks: mise.yml
-- import_tasks: rust.yml
-- import_tasks: nodejs.yml
-- import_tasks: bun.yml
-- import_tasks: docker.yml
+
+- name: Install dependencies
+  include_tasks: dependencies.yml
+  when: "'dependencies' in workspace_setup_components"
+  tags: [ dependencies ]
+
+- name: Remove any pre-existing nvm installation
+  include_tasks: remove_nvm.yml
+  when: >-
+    'mise' in workspace_setup_components
+    or 'nodejs' in workspace_setup_components
+  tags: [ nvm, mise, nodejs ]
+
+- name: Install autojump
+  include_tasks: autojump.yml
+  when: "'autojump' in workspace_setup_components"
+  tags: [ autojump ]
+
+- name: Configure history hotkeys
+  include_tasks: history.yml
+  when: "'history' in workspace_setup_components"
+  tags: [ history ]
+
+- name: Install Starship
+  include_tasks: starship.yml
+  when: "'starship' in workspace_setup_components"
+  tags: [ starship ]
+
+- name: Install VIM
+  include_tasks: vim.yml
+  when: "'vim' in workspace_setup_components"
+  tags: [ vim ]
+
+- name: Install mise
+  include_tasks: mise.yml
+  when: "'mise' in workspace_setup_components"
+  tags: [ mise ]
+
+- name: Install Python
+  include_tasks: python.yml
+  when: "'python' in workspace_setup_components"
+  tags: [ python ]
+
+- name: Install uv
+  include_tasks: uv.yml
+  when: "'uv' in workspace_setup_components"
+  tags: [ uv ]
+
+- name: Install Rust
+  include_tasks: rust.yml
+  when: "'rust' in workspace_setup_components"
+  tags: [ rust ]
+
+- name: Install Node.js
+  include_tasks: nodejs.yml
+  when: "'nodejs' in workspace_setup_components"
+  tags: [ nodejs ]
+
+- name: Install Bun
+  include_tasks: bun.yml
+  when: "'bun' in workspace_setup_components"
+  tags: [ bun ]
+
+- name: Install Docker
+  include_tasks: docker.yml
+  when: "'docker' in workspace_setup_components"
+  tags: [ docker ]

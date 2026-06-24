@@ -31,6 +31,19 @@ This will automatically setup to timx-style workspace
 - indentLine
 - vim-one
 
+### Configuration
+
+The components installed are controlled by `workspace_setup_components`
+(defaults to all of them). Pass a subset to install only what you need:
+
+```bash
+ansible localhost -m include_role -a name=sweetim.workspace_setup --diff -K \
+  -e workspace_setup_components='["vim","starship"]'
+```
+
+Each component can also be selected by tag, e.g. `--tags vim` or
+`--skip-tags docker`.
+
 ### Dependencies
 
 ```bash

@@ -1,7 +1,7 @@
 ---
 - name: Check if uv is available
   stat:
-    path: "{{ ansible_env.HOME }}/.local/bin/uv"
+    path: "{{ workspace_setup_home }}/.local/bin/uv"
   register: uv_binary
 
 - name: Install uv (Astral) for current user

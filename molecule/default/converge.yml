@@ -1,6 +1,20 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    workspace_setup_components:
+      - dependencies
+      - autojump
+      - history
+      - starship
+      - vim
+      - mise
+      - python
+      - uv
+      - rust
+      - nodejs
+      - bun
+      - docker
   tasks:
     - name: "Include workspace-setup"
       include_role:
