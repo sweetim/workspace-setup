@@ -1,4 +1,5 @@
 ## timx workspace setup
+
 ![CI](https://github.com/sweetim/workspace-setup/workflows/CI/badge.svg)
 ![ansible-downloads](https://img.shields.io/ansible/role/d/sweetim/workspace_setup?style=flat-square&label=download&logo=ansible&logoColor=%23F00&color=brightgreen)
 
@@ -43,14 +44,14 @@ ansible-galaxy install sweetim.workspace_setup
 ansible localhost -m include_role -a name=sweetim.workspace_setup --diff -K
 ```
 
-> **Note (Ubuntu 26.04+):** Ubuntu 26.04 ships `sudo-rs` as the default `sudo`,
-> whose become prompt Ansible cannot recognize (it times out). This role's
-> `ansible.cfg` points Ansible at the classic C sudo (`/usr/bin/sudo.ws`). If you
-> run outside this repo, pass it explicitly:
->
-> ```bash
-> ansible localhost -m include_role -a name=sweetim.workspace_setup --diff -K -e ansible_sudo_exe=/usr/bin/sudo.ws
-> ```
+**Note (Ubuntu 26.04+):** Ubuntu 26.04 ships `sudo-rs` as the default `sudo`,
+whose become prompt Ansible cannot recognize (it times out). This role's
+`ansible.cfg` points Ansible at the classic C sudo (`/usr/bin/sudo.ws`). If you
+run outside this repo, pass it explicitly:
+
+```bash
+ansible localhost -m include_role -a name=sweetim.workspace_setup --diff -K -e ansible_sudo_exe=/usr/bin/sudo.ws
+```
 
 or using ansible-playbook
 
@@ -59,5 +60,5 @@ or using ansible-playbook
 - name: sample
   hosts: 127.0.0.1
   roles:
-  - role: sweetim.workspace_setup
+      - role: sweetim.workspace_setup
 ```
