@@ -1,0 +1,6 @@
+---
+- name: Set up local workspace
+  hosts: localhost
+  connection: local
+  roles:
+    - role: "{{ playbook_dir }}"

@@ -12,13 +12,13 @@
       workspace_setup_components.
   when: not mise_binary.stat.exists
 
-- name: Check for a standalone rustup installation
+- name: Check for a standalone rustup binary
   stat:
-    path: "{{ workspace_setup_home }}/.rustup"
+    path: "{{ workspace_setup_home }}/.cargo/bin/rustup"
   register: standalone_rustup
 
 - name: Remove standalone rustup installation
-  command: rustup self uninstall -y
+  command: "{{ standalone_rustup.stat.path }} self uninstall -y"
   when: standalone_rustup.stat.exists
 
 - name: Install Rust latest via mise
