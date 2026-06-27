@@ -4,6 +4,7 @@ format = """
 [](red)\
 $os\
 $username\
+$hostname\
 [](bg:peach fg:red)\
 $directory\
 [](bg:yellow fg:peach)\
@@ -27,6 +28,12 @@ $line_break$character
 """
 
 palette = 'catppuccin_macchiato'
+
+[hostname]
+ssh_only = true
+style = "bg:red fg:crust"
+format = '[@$hostname]($style)'
+trim_at = "."
 
 [os]
 disabled = false
