@@ -20,7 +20,9 @@ $kotlin\
 $haskell\
 $python\
 $conda\
-[ ](fg:sapphire)\
+[](fg:sapphire bg:mauve)\
+$nix_shell\
+[ ](fg:mauve)\
 $line_break$character
 """
 
@@ -145,6 +147,11 @@ symbol = "  "
 style = "fg:crust bg:sapphire"
 format = '[$symbol$environment ]($style)'
 ignore_base = false
+
+[nix_shell]
+symbol = "  "
+style = "fg:crust bg:mauve"
+format = '[$symbol$state( \($name\))]($style)'
 
 [time]
 disabled = false
