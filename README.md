@@ -7,6 +7,7 @@ This will automatically setup to timx-style workspace
 
 ### Components
 
+- dependencies
 - autojump
 - history using directional key
 - starship
@@ -15,9 +16,9 @@ This will automatically setup to timx-style workspace
 - nodejs
 - bun
 - rust
-- python3
-- pip3
+- python
 - uv
+- docker
 
 ### VIM plugins
 
@@ -41,8 +42,45 @@ ansible localhost -m include_role -a name=sweetim.workspace_setup --diff -K \
   -e workspace_setup_components='["vim","starship"]'
 ```
 
-Each component can also be selected by tag, e.g. `--tags vim` or
-`--skip-tags docker`.
+#### Available selections for `workspace_setup_components`
+
+The following values are valid entries for the `workspace_setup_components`
+list:
+
+| Component      | Description                                        |
+| -------------- | -------------------------------------------------- |
+| `dependencies` | APT packages required by the other components      |
+| `autojump`     | `autojump` directory jumper                        |
+| `history`      | Shell history navigation with the directional keys |
+| `starship`     | Starship cross-shell prompt                        |
+| `vim`          | VIM plus the plugin set listed below               |
+| `mise`         | mise version manager (runs before rust/nodejs/bun) |
+| `python`       | Python 3 toolchain                                 |
+| `uv`           | uv Python package/project manager                  |
+| `rust`         | Rust toolchain (via mise)                          |
+| `nodejs`       | Node.js toolchain (via mise)                       |
+| `bun`          | Bun runtime (via mise)                             |
+| `docker`       | Docker engine and compose plugin                   |
+
+#### Examples
+
+Install everything except Docker:
+
+```bash
+ansible localhost -m include_role -a name=sweetim.workspace_setup --diff -K \
+  -e workspace_setup_components='["dependencies","autojump","history","starship","vim","mise","python","uv","rust","nodejs","bun"]'
+```
+
+Install only the editor and prompt:
+
+```bash
+ansible localhost -m include_role -a name=sweetim.workspace_setup --diff -K \
+  -e workspace_setup_components='["vim","starship"]'
+```
+
+> **Note:** Order matters. `mise` must come before `rust`, `nodejs` and `bun`,
+> which install their toolchains through it. The default order already handles
+> this, so only reorder if you know what you are doing.
 
 ### Dependencies
 
