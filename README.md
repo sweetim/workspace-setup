@@ -19,6 +19,7 @@ This will automatically setup to timx-style workspace
 - python
 - uv
 - docker
+- herdr
 
 ### VIM plugins
 
@@ -61,6 +62,7 @@ list:
 | `nodejs`       | Node.js toolchain (via mise)                       |
 | `bun`          | Bun runtime (via mise)                             |
 | `docker`       | Docker engine and compose plugin                   |
+| `herdr`        | herdr agent runtime (`herdr.dev`)                  |
 
 #### Examples
 
@@ -68,7 +70,7 @@ Install everything except Docker:
 
 ```bash
 ansible localhost -m include_role -a name=sweetim.workspace_setup --diff -K \
-  -e workspace_setup_components='["dependencies","autojump","history","starship","vim","mise","python","uv","rust","nodejs","bun"]'
+  -e workspace_setup_components='["dependencies","autojump","history","starship","vim","mise","python","uv","rust","nodejs","bun","herdr"]'
 ```
 
 Install only the editor and prompt:

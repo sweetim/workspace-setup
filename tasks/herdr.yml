@@ -1,0 +1,13 @@
+---
+- name: Check if herdr is available
+  stat:
+    path: "{{ workspace_setup_home }}/.local/bin/herdr"
+  register: herdr_binary
+
+- name: Install herdr for current user
+  shell: |
+    set -euo pipefail
+    curl -fsSL https://herdr.dev/install.sh | sh
+  args:
+    executable: /bin/bash
+  when: not herdr_binary.stat.exists

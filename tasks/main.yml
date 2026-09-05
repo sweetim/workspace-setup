@@ -75,3 +75,8 @@
   include_tasks: docker.yml
   when: "'docker' in workspace_setup_components"
   tags: [ docker ]
+
+- name: Install herdr
+  include_tasks: herdr.yml
+  when: "'herdr' in workspace_setup_components"
+  tags: [ herdr ]

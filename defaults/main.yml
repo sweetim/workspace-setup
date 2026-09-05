@@ -17,6 +17,7 @@ workspace_setup_components:
   - nodejs
   - bun
   - docker
+  - herdr
 
 # Home directory of the target user. Centralised so module paths expand
 # consistently instead of relying on '~' expansion.

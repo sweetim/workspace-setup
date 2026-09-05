@@ -18,6 +18,7 @@
         - uv --version
         - bun --version
         - docker --version
+        - herdr --version
 
     - name: Verify nvm is uninstalled
       block:
